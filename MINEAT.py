@@ -5,23 +5,30 @@ Created on Thu Mar  8 11:21:54 2018
 
 @author: shubham
 """
+def bsearch(A, l, r, h):
+    while l<r:
+        mid = (l+r)//2
+        count = 0
+        for i in range(len(A)):
+            count+=val(A[i], mid)
+        if count<=h:
+            r = mid
+        else:
+            l = mid+1
+    return r
+def val(x, i):
+    if x%i!=0:
+        return x//i+1
+    else:
+        return x//i
+    
 for _ in range(int(input())):
     n, h = map(int, input().split())
     A = list(map(int, input().split()))
     if n == h:
         print(max(A))
     else:
-        A.sort()
-        t = h-n
-        sum = 0
-        for i in range(n):
-            sum+=A[i]
-        if sum%h!=0:
-            sum1 = sum//h+1
-        else:
-            sum1 = sum//h
-        if t <= n:
-            print(max(sum1, A[n-1-t]))
-        else:
-            print(max(min(A), sum1))
+        ans = bsearch(A, 0, max(A), h)
+        print(ans)
+        
         
