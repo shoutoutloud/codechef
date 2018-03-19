@@ -17,8 +17,19 @@ for _ in range(int(input())):
     
     for i in range(1, n+1):
         s.append(list(itertools.combinations(a, i)))
-#    if m in s:
-#        print('Yes')
-#    else:
-#        print('No')
-#1 2 4 8 16
+    sum = 0
+    flag = 0
+    for i in range(len(s)):
+        for j in range(len(s[i])):
+            for k in range(len(s[i][j])):
+                sum+=s[i][j][k]
+            if sum==m:
+                print('Yes')
+                flag = 1
+                break
+            else:
+                sum = 0
+        if flag == 1:
+            break
+    if flag==0:
+        print('No')
